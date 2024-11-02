@@ -16,11 +16,21 @@ public class Estoque {
         }
     }
 
-    public int getQuantidadeLivros() {
-        return quantidadeLivros;
+    public void excluirLivro(Livro livro) {
+        if (listaLivrosDisponiveis.contains(livro)) {
+            listaLivrosDisponiveis.remove(livro);
+            livro.setDisponivel(false);
+            quantidadeLivros -= 1;
+        } else {
+            System.out.println("O livro não existe no estoque!");
+        }
     }
 
     public boolean pesquisarLivro(Livro livro) {
         return listaLivrosDisponiveis.contains(livro); //Retorna true se o livro existe, false o contrário
+    }
+    
+    public int getQuantidadeLivros() {
+        return quantidadeLivros;
     }
 }
