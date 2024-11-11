@@ -1,4 +1,8 @@
-public class Infantil extends Genero implements CalculaPrecoLivro{
+package src.models;
+
+import src.service.CalculaPrecoLivro;
+
+public class Infantil extends Genero implements CalculaPrecoLivro {
     public Infantil(String nome) {
         super(nome);
     }

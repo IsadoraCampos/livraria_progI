@@ -1,4 +1,8 @@
-public class TerrorSuspense extends Genero implements CalculaPrecoLivro{
+package src.models;
+
+import src.service.CalculaPrecoLivro;
+
+public class TerrorSuspense extends Genero implements CalculaPrecoLivro {
     public TerrorSuspense(String nome) {
         super(nome);
     }

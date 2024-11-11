@@ -1,3 +1,5 @@
+package src.models;
+
 public class Genero {
     private String genero;
 

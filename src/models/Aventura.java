@@ -1,4 +1,8 @@
-public class Aventura extends Genero implements CalculaPrecoLivro{
+package src.models;
+
+import src.service.CalculaPrecoLivro;
+
+public class Aventura extends Genero implements CalculaPrecoLivro {
     public Aventura(String nome) {
         super(nome);
     }

@@ -1,4 +1,8 @@
-public class Ficcao extends Genero implements CalculaPrecoLivro{
+package src.models;
+
+import src.service.CalculaPrecoLivro;
+
+public class Ficcao extends Genero implements CalculaPrecoLivro {
 
     public Ficcao(String nome) {
         super(nome);

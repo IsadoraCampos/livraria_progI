@@ -1,3 +1,7 @@
+package src.models;
+
+import src.service.CalculaPrecoLivro;
+
 public class Livro {
     private String titulo;
     private int paginas;

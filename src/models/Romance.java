@@ -1,4 +1,8 @@
-public class Romance extends Genero implements CalculaPrecoLivro{
+package src.models;
+
+import src.service.CalculaPrecoLivro;
+
+public class Romance extends Genero implements CalculaPrecoLivro {
     public Romance(String nome) {
         super(nome);
     }
