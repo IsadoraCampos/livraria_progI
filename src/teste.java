@@ -12,6 +12,7 @@ public class teste {
         Genero ficcao = new Ficcao("Ficção");
         Livro bateAsas = new Livro("Bate Asaas", 267, 19, vitorHugo , "Editora", ficcao);
 
+        bateAsas.printLivro();
         Estoque estoque = new Estoque();
 
         vitorHugo.adicionarLivroPorAutor(bateAsas);

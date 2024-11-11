@@ -46,7 +46,7 @@ public class Livro {
         return genero;
     }
 
-   public boolean isDisponivel() {
+    public boolean isDisponivel() {
         return disponivel;
     }
 
@@ -57,7 +57,6 @@ public class Livro {
     public double getPreco() {
         return preco;
     }
-
     private void atualizarPreco() {
         if (genero instanceof CalculaPrecoLivro) { // Verifica se o gênero implementa a interface
             preco = ((CalculaPrecoLivro) genero).calculaPreco(this); //Realiza um cast para que gênero seja tratado como um CalculaPrecoLivro
@@ -65,5 +64,17 @@ public class Livro {
             preco = 0.0;
         }
     }
-    
+
+    public void printLivro() {
+        System.out.println("----------------------------------------------");
+        System.out.println("Título: " + this.getTitulo());
+        System.out.println("Autor: " + this.autor.getNome());
+        System.out.println("Gênero: " + this.genero.getGenero());
+        System.out.println("Editora: " + this.getEditora());
+        System.out.println("Nº de páginas: " + this.getPaginas());
+        System.out.println("Nº de capítulos: " + this.getCapitulos());
+        System.out.println("Preço: " + this.getPreco());
+        System.out.println("Disponível: " + this.isDisponivel());
+        System.out.println("----------------------------------------------");
+   }
 }
