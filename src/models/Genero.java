@@ -1,13 +1,22 @@
 package src.models;
 
-public class Genero {
-    private String genero;
+public enum Genero {
+    AVENTURA(40.00),
+    AUTOAJUDA(19.90),
+    BIOGRAFIA(44.90),
+    FANTASIA(45.90),
+    FICCAO(34.99),
+    INFANTIL(19.99),
+    ROMANCE(45.00),
+    TERROR_SUSPENSE(49.99);
 
-    public Genero(String genero) {
-        this.genero = genero;
+    private final double precoBase;
+
+    Genero(double precoBase) {
+        this.precoBase = precoBase;
     }
 
-    public String getGenero() {
-        return genero;
+    public double getPrecoBase() {
+        return precoBase;
     }
 }
