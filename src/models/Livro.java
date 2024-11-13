@@ -7,7 +7,7 @@ public class Livro {
     private Autor autor;
     private Editora editora;
     private Genero genero;
-    private int quantidade; //Outras classes podem mudar a situação do livro
+    private int quantidade;
 
     public Livro(String titulo, int paginas, int capitulos, Autor autor, Editora editora, Genero genero, int quantidade) {
         this.titulo = titulo;
