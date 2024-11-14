@@ -4,7 +4,7 @@ import src.service.ClienteOperacoes;
 
 public class ClienteVIP extends Cliente {
 
-    private int desconto;
+    private double desconto;
     public ClienteVIP(String nome, String cpf, String telefone) {
         super(nome, cpf, telefone);
         this.desconto = 5;
@@ -19,5 +19,10 @@ public class ClienteVIP extends Cliente {
         System.out.println("Telefone: " + this.getTelefone());
         System.out.println("Número de compras: " + this.getNumeroCompras());
         System.out.println("----------------------------------------------");
+    }
+
+    @Override
+    public double calculaPreco(Livro livro) {
+        return livro.getPreco() * ((100 - desconto) /100);
     }
 }

@@ -19,4 +19,9 @@ public class ClienteNormal extends Cliente {
         System.out.println("Número de compras: " + this.getNumeroCompras());
         System.out.println("----------------------------------------------");
     }
+
+    @Override
+    public double calculaPreco(Livro livro) {
+        return livro.getPreco();
+    }
 }
