@@ -4,7 +4,6 @@ import src.models.*;
 import src.service.ClienteManager;
 import src.service.Estoque;
 
-import javax.swing.*;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -41,8 +40,11 @@ public class Main {
                     String nomeAutor = sc.nextLine();
                     System.out.print("Editora: ");
                     String nomeEditora = sc.nextLine();
-                    System.out.print("Gênero: "); //organizar isso aqui pros enums
-                    String nomeGenero = sc.nextLine();
+                    System.out.println("Digite o gênero conforme as opções abaixo: "); //organizar isso aqui pros enums
+                    for (Genero genero : Genero.values()) {
+                        System.out.printf(" - %s%n", genero);
+                    }
+                    String nomeGenero = sc.nextLine().toUpperCase();
                     System.out.print("Número de páginas: ");
                     int paginas = sc.nextInt();
                     sc.nextLine();
