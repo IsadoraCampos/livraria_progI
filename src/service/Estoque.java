@@ -1,6 +1,7 @@
 package src.service;
 
 import src.models.Autor;
+import src.models.ClienteNormal;
 import src.models.Livro;
 
 import java.util.ArrayList;
@@ -19,6 +20,23 @@ public class Estoque {
         } else {
             System.out.println("O livro já está cadastrado!");
         }
+    }
+
+
+    //REVER MÉTODOOO
+    public Livro findLivro(String titulo, String autor, String editora, int quantidade) {
+        try {
+            for (Livro livro : listaLivrosDisponiveis) {
+                if (Objects.equals(livro.getTitulo(), titulo) &&
+                        Objects.equals(livro.getAutor().getNome(), autor) &&
+                        Objects.equals(livro.getEditora().getNome(), editora)) {
+                    return livro;
+                }
+            }
+        } catch (RuntimeException e) {
+            System.out.println("Livro não encontrado");
+        }
+        return null;
     }
 
     public void getLivroPorTitulo(String titulo) {
@@ -63,14 +81,24 @@ public class Estoque {
         }
     }
 
-    public void venderLivro(String titulo, String autor, String editora, int quantidade) {
+    public Livro encontraLivro(String titulo, String autor, String editora, int quantidade) {
         for (Livro livro : listaLivrosDisponiveis) {
             if (Objects.equals(livro.getTitulo(), titulo) &&
                     Objects.equals(livro.getAutor().getNome(), autor) &&
                     Objects.equals(livro.getEditora().getNome(), editora)) {
-                if (listaLivrosDisponiveis.contains(livro)) {
-                    livro.venderLivro(quantidade);
-                }
+                return livro;
+            }
+        }
+        return null;
+    }
+
+    public void venderLivro(Livro livro, int quantidade) {
+
+        if (livro != null) {
+            if (listaLivrosDisponiveis.contains(livro)) {
+                livro.venderLivro(quantidade);
+            } else {
+                System.out.println("Este livro não está cadastrado");
             }
         }
     }

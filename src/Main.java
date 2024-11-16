@@ -1,9 +1,7 @@
 package src;
 
-import src.models.Autor;
-import src.models.Editora;
-import src.models.Genero;
-import src.models.Livro;
+import src.models.*;
+import src.service.ClienteManager;
 import src.service.Estoque;
 
 import java.util.Locale;
@@ -15,18 +13,22 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         Estoque estoque = new Estoque();
+        ClienteManager clientes = new ClienteManager();
 
     try {
         boolean menu = true;
         while (menu) {
             System.out.println();
             System.out.println("MENU DE OPÇÕES: ");
-            System.out.println("1. Cadastrar um livro no estoque");
-            System.out.println("2. Buscar no estoque");
-            System.out.println("3. Adicionar quantidade de um livro no estoque");
-            System.out.println("4. Vender um livro");
-            System.out.println("5. Remover livro do estoque");
-            System.out.println("6. Encerrar programa");
+            System.out.println("1.  Cadastrar um livro no estoque");
+            System.out.println("2.  Buscar no estoque");
+            System.out.println("3.  Adicionar quantidade de um livro no estoque");
+            System.out.println("4.  Vender um livro");
+            System.out.println("5.  Remover livro do estoque");
+            System.out.println("6.  Cadastrar Cliente");
+            System.out.println("7.  Buscar Cliente pelo CPF");
+            System.out.println("8.  Deletar Cliente cadastrado");
+            System.out.println("9. Encerrar programa");
             String n = sc.nextLine(); //verficar ainda se é inteiro e lançar exceção
             int opcao =Integer.parseInt(n);
 
@@ -38,8 +40,11 @@ public class Main {
                     String nomeAutor = sc.nextLine();
                     System.out.print("Editora: ");
                     String nomeEditora = sc.nextLine();
-                    System.out.print("Gênero: "); //organizar isso aqui pros enums
-                    String nomeGenero = sc.nextLine();
+                    System.out.println("Digite o gênero conforme as opções abaixo: "); //organizar isso aqui pros enums
+                    for (Genero genero : Genero.values()) {
+                        System.out.printf(" - %s%n", genero);
+                    }
+                    String nomeGenero = sc.nextLine().toUpperCase();
                     System.out.print("Número de páginas: ");
                     int paginas = sc.nextInt();
                     sc.nextLine();
@@ -108,6 +113,8 @@ public class Main {
                     break;
                 case 4:
                     //venda diminui a quantidade em estoque
+                    System.out.print("Digite o CPF do cliente que deseja fazer a compra: ");
+                    String vendaCpf = sc.nextLine();
                     System.out.print("Digite o titulo do livro que deseja vender: ");
                     String vendaTitulo = sc.nextLine();
                     System.out.print("Digite o autor do livro que deseja vender: ");
@@ -117,7 +124,10 @@ public class Main {
                     System.out.print("Quantidade de exemplares que deseja vender: ");
                     int quant = sc.nextInt();
                     sc.nextLine();
-                    estoque.venderLivro(vendaTitulo, vendaAutor, vendaEditora, quant);
+                    Cliente vendaCliente = clientes.getClientePorCPF(vendaCpf);
+                    Livro vendaLivro = estoque.findLivro(vendaTitulo, vendaAutor, vendaEditora, quant);
+                    estoque.venderLivro(vendaLivro, quant);
+                    clientes.venderLivro(vendaCliente, vendaLivro);
                     break;
                 case 5:
                     //excluir totalmente um livro do estoque, independentemente da quantidade disponível
@@ -130,6 +140,26 @@ public class Main {
                     estoque.excluirLivro(excluiTitulo, excluiAutor, excluiEditora);
                     break;
                 case 6:
+                    System.out.print("Digite o nome do cliente: ");
+                    String nome = sc.nextLine();
+                    System.out.print("Digite o CPF do cliente: ");
+                    String cpf = sc.nextLine();
+                    System.out.print("Digite o telefone do cliente: ");
+                    String telefone = sc.nextLine();
+                    Cliente cliente = new ClienteNormal(nome, cpf, telefone);
+                    clientes.cadastrarCliente(cliente);
+                    break;
+                case 7:
+                    System.out.print("Digite o CPF do cliente: ");
+                    String buscaCpf = sc.nextLine();
+                    Cliente cliente1 = clientes.getClientePorCPF(buscaCpf);
+                    cliente1.printCliente();
+                    break;
+                case 8:
+                    System.out.print("Digite o CPF do cliente: ");
+                    String excluiCpf = sc.nextLine();
+                    clientes.excluirCliente(excluiCpf);
+                case 9:
                     menu = false;
                     break;
                 default:
