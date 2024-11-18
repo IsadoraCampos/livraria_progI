@@ -1,7 +1,5 @@
 package src.service;
 
-import src.models.Autor;
-import src.models.ClienteNormal;
 import src.models.Livro;
 
 import java.util.ArrayList;
@@ -9,35 +7,60 @@ import java.util.List;
 import java.util.Objects;
 
 public class Estoque {
-    private static int quantidadeLivros;
     private List<Livro> listaLivrosDisponiveis = new ArrayList<>();
    // private boolean disponivel; quando um livro é cadastrado, ele recebe o código de disponível (melhorar esta parte)
+
+
+    public List<Livro> getListaLivrosDisponiveis() {
+        return listaLivrosDisponiveis;
+    }
 
     public void cadastrarLivro(Livro livro) {
         if (!listaLivrosDisponiveis.contains(livro)) {
            listaLivrosDisponiveis.add(livro);
-           quantidadeLivros += 1;
         } else {
             System.out.println("O livro já está cadastrado!");
         }
     }
 
-
-    //REVER MÉTODOOO
-    public Livro findLivro(String titulo, String autor, String editora, int quantidade) {
-        try {
-            for (Livro livro : listaLivrosDisponiveis) {
-                if (Objects.equals(livro.getTitulo(), titulo) &&
+    public Livro encontraLivro(String titulo, String autor, String editora) {
+        for (Livro livro : listaLivrosDisponiveis) {
+            if (Objects.equals(livro.getTitulo(), titulo) &&
                         Objects.equals(livro.getAutor().getNome(), autor) &&
                         Objects.equals(livro.getEditora().getNome(), editora)) {
                     return livro;
-                }
             }
-        } catch (RuntimeException e) {
-            System.out.println("Livro não encontrado");
         }
         return null;
     }
+
+    public boolean tituloExiste(String titulo) {
+        for (Livro livro : listaLivrosDisponiveis) {
+            if (Objects.equals(titulo, livro.getTitulo())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean autorExiste(String autor) {
+        for (Livro livro : listaLivrosDisponiveis) {
+            if (Objects.equals(autor, livro.getAutor().getNome())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean editoraExiste(String editora) {
+        for (Livro livro : listaLivrosDisponiveis) {
+            if (Objects.equals(editora, livro.getEditora().getNome())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public void getLivroPorTitulo(String titulo) {
         for (Livro livro : listaLivrosDisponiveis){
@@ -81,16 +104,6 @@ public class Estoque {
         }
     }
 
-    public Livro encontraLivro(String titulo, String autor, String editora, int quantidade) {
-        for (Livro livro : listaLivrosDisponiveis) {
-            if (Objects.equals(livro.getTitulo(), titulo) &&
-                    Objects.equals(livro.getAutor().getNome(), autor) &&
-                    Objects.equals(livro.getEditora().getNome(), editora)) {
-                return livro;
-            }
-        }
-        return null;
-    }
 
     public void venderLivro(Livro livro, int quantidade) {
 
@@ -109,7 +122,6 @@ public class Estoque {
                     Objects.equals(livro.getEditora().getNome(), editora)) {
                 if (listaLivrosDisponiveis.contains(livro)) {
                     listaLivrosDisponiveis.remove(livro);
-                    quantidadeLivros -= 1;
                     System.out.println("Livro removido do estoque com sucesso!");
                 } else {
                     System.out.println("O livro não existe no estoque!");
@@ -117,10 +129,6 @@ public class Estoque {
             }
         }
 
-    }
-
-    public int getQuantidadeLivros() {
-        return quantidadeLivros;
     }
 
     public boolean pesquisarLivro(Livro livro) {
