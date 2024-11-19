@@ -11,6 +11,9 @@ public abstract class Cliente implements ClienteOperacoes {
     private String telefone;
     private int numeroCompras;
 
+    /**
+    * Método construtor
+    */
     public Cliente(String nome, String cpf, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
@@ -18,6 +21,9 @@ public abstract class Cliente implements ClienteOperacoes {
         this.numeroCompras = 0;
     }
 
+     /**
+    * Método construtor
+    */
     public Cliente(String nome, String cpf, String telefone, int numeroCompras) {
         this.nome = nome;
         this.cpf = cpf;
@@ -54,6 +60,9 @@ public abstract class Cliente implements ClienteOperacoes {
         return this.numeroCompras;
     }
 
+     /**
+    * Método que vende um livro e aumenta o número de compras do Cliente
+    */
     public void vendaLivro() {
         this.numeroCompras += 1;
     }
