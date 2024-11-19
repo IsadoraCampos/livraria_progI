@@ -68,6 +68,10 @@ public class ClienteManager {
         return new ClienteVIP(cliente.getNome(), cliente.getCpf(), cliente.getTelefone(), cliente.getNumeroCompras());
     }
 
+     /**
+    * Método que atualiza um Cliente
+    * recebe como @param cliente e atualiza o Cliente na lista de clientes
+    */
     public void atualizarCliente(Cliente clienteAtualizado) {
         for (int i = 0; i < listaClientes.size(); i++) {
             if (listaClientes.get(i).getCpf().equals(clienteAtualizado.getCpf())) {
