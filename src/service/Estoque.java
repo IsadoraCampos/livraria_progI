@@ -161,11 +161,11 @@ public class Estoque {
      * recebe como @param livro
      * e @param quantidade
      */
-    public void venderLivro(Livro livro, int quantidade) {
+    public void venderLivro(Livro livro) {
 
         if (livro != null) {
             if (listaLivrosDisponiveis.contains(livro)) {
-                livro.venderLivro(quantidade);
+                livro.venderLivro();
             } else {
                 System.out.println("Este livro não está cadastrado");
             }

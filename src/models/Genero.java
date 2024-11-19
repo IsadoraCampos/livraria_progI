@@ -28,4 +28,13 @@ public enum Genero {
     public double getPrecoBase() {
         return precoBase;
     }
+
+    public static boolean generoValido(String nomeGenero) {
+        for (Genero genero : Genero.values()) {
+            if (genero.name().equals(nomeGenero)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

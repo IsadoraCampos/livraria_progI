@@ -8,8 +8,8 @@ import src.service.ClienteOperacoes;
 public class ClienteVIP extends Cliente {
 
     private double desconto;
-    public ClienteVIP(String nome, String cpf, String telefone) {
-        super(nome, cpf, telefone);
+    public ClienteVIP(String nome, String cpf, String telefone,int numeroCompras) {
+        super(nome, cpf, telefone, numeroCompras);
         this.desconto = 5;
     }
 

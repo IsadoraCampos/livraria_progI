@@ -66,7 +66,9 @@ public class Main {
                     if (nomeGenero.isEmpty()) {
                         throw new DomainException("O gênero não pode estar vazio.");
                     }
-                    System.out.println();
+                    if (!Genero.generoValido(nomeGenero)) {
+                        throw new DomainException("O gênero deve ser um dos listados acima!");
+                    }
                     System.out.print("Número de páginas: ");
                     String n1 = sc.nextLine().trim();;
                     if (!isInt(n1)) {
@@ -203,27 +205,18 @@ public class Main {
                     if (vendaEditora.isEmpty()) {
                         throw new DomainException("O nome da editora não pode estar vazio.");
                     }
-                    System.out.print("Quantidade de exemplares que deseja vender: ");
-                    String n5 = sc.nextLine().trim();
-                    if (!isInt(n5)) {
-                        throw new DomainException("A quantidade deve ser um número inteiro.");
-                    }
-                    int quant =Integer.parseInt(n5);
                     Cliente vendaCliente = clientes.getClientePorCPF(vendaCpf);
-                    if (vendaCliente.getNumeroCompras() > 5) {
-                        Cliente clienteVIP = clientes.converterCliente(vendaCliente);
-                    }
                     Livro vendaLivro = estoque.encontraLivro(vendaTitulo, vendaAutor, vendaEditora);
                     if (vendaLivro == null) {
-                        throw new DomainException("Livro não encontrado!");
+                        throw new DomainException("Este livro não está cadastrado!");
                     }
-                    estoque.venderLivro(vendaLivro, quant);
-                    if (vendaCliente.getNumeroCompras() > 5) {
+                    estoque.venderLivro(vendaLivro);
+                    if (vendaCliente.getNumeroCompras() >= 5) {
                         Cliente clienteVIP = clientes.converterCliente(vendaCliente);
-                        clientes.venderLivro(clienteVIP, vendaLivro);
-                    } else {
-                        clientes.venderLivro(vendaCliente, vendaLivro);
+                        clientes.atualizarCliente(clienteVIP);
+                        vendaCliente = clienteVIP;
                     }
+                    clientes.venderLivro(vendaCliente, vendaLivro);
                     break;
                 case 5:
                     //excluir totalmente um livro do estoque, independentemente da quantidade disponível
