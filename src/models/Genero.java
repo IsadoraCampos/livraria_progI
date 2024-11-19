@@ -29,6 +29,11 @@ public enum Genero {
         return precoBase;
     }
 
+     /**
+    * Método que verifica se um Genero é válido
+    * recebe como @param nomeGenero
+    * e @return um valor booleano
+    */
     public static boolean generoValido(String nomeGenero) {
         for (Genero genero : Genero.values()) {
             if (genero.name().equals(nomeGenero)) {
