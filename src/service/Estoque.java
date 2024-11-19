@@ -6,15 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Definição da classe Estoque
+ */
 public class Estoque {
     private List<Livro> listaLivrosDisponiveis = new ArrayList<>();
-   // private boolean disponivel; quando um livro é cadastrado, ele recebe o código de disponível (melhorar esta parte)
-
-
+  
+    /**
+     * Método que 
+     * @return a lista de livros disponíveis
+     */
     public List<Livro> getListaLivrosDisponiveis() {
         return listaLivrosDisponiveis;
     }
 
+    /**
+     * Método que cadastra um Livro no Estoque
+     * recebe como @param livro 
+     */
     public void cadastrarLivro(Livro livro) {
         if (!listaLivrosDisponiveis.contains(livro)) {
            listaLivrosDisponiveis.add(livro);
@@ -23,6 +32,13 @@ public class Estoque {
         }
     }
 
+    /**
+     * Método que procura um Livro
+     * recebe como @param titulo
+     * e @param autor
+     * e @param editora
+     * e @return o Livro
+     */
     public Livro encontraLivro(String titulo, String autor, String editora) {
         for (Livro livro : listaLivrosDisponiveis) {
             if (Objects.equals(livro.getTitulo(), titulo) &&
@@ -34,6 +50,11 @@ public class Estoque {
         return null;
     }
 
+    /**
+     * Método que verifica se um título de Livro existe
+     * recebe como @param titulo
+     * e @return um valor booleano
+     */
     public boolean tituloExiste(String titulo) {
         for (Livro livro : listaLivrosDisponiveis) {
             if (Objects.equals(titulo, livro.getTitulo())) {
@@ -43,6 +64,11 @@ public class Estoque {
         return false;
     }
 
+    /**
+     * Método que verifica se um Autor existe
+     * recebe como @param autor
+     * e @return um valor booleano
+     */
     public boolean autorExiste(String autor) {
         for (Livro livro : listaLivrosDisponiveis) {
             if (Objects.equals(autor, livro.getAutor().getNome())) {
@@ -52,6 +78,11 @@ public class Estoque {
         return false;
     }
 
+    /**
+     * Método que verifica se uma Editora existe
+     * recebe como @param editora
+     * e @return um valor booleano
+     */
     public boolean editoraExiste(String editora) {
         for (Livro livro : listaLivrosDisponiveis) {
             if (Objects.equals(editora, livro.getEditora().getNome())) {
@@ -61,7 +92,10 @@ public class Estoque {
         return false;
     }
 
-
+    /**
+     * Método que procura todos os livros pelo título
+     * recebe como @param titulo
+     */
     public void getLivroPorTitulo(String titulo) {
         for (Livro livro : listaLivrosDisponiveis){
             if (Objects.equals(livro.getTitulo(), titulo)){
@@ -70,6 +104,10 @@ public class Estoque {
         }
     }
 
+    /**
+     * Método que procura todos os livros pelo autor
+     * recebe como @param autor
+     */
     public void getLivrosPorAutor(String autor) {
         for (Livro livro : listaLivrosDisponiveis){
             if (Objects.equals(livro.getAutor().getNome(), autor)){
@@ -78,6 +116,10 @@ public class Estoque {
         }
     }
 
+    /**
+     * Método que procura todos os livros pela editora
+     * recebe como @param editora
+     */
     public void getLivrosPorEditora(String editora) {
         for (Livro livro : listaLivrosDisponiveis){
             if (Objects.equals(livro.getEditora().getNome(), editora)){
@@ -86,12 +128,22 @@ public class Estoque {
         }
     }
 
+    /**
+     * Método que procura todos os livros
+     */
     public void getTodosOsLivros() {
         for (Livro livro : listaLivrosDisponiveis) {
             livro.printLivro();
         }
     }
 
+    /**
+     * Método que repõem um Livro no Estoque
+     * recebe como @param titulo
+     *e  @param autor
+     * e @param editora
+     * e @param quantidade
+     */
     public void reporLivro(String titulo, String autor, String editora, int quantidade) {
         for (Livro livro : listaLivrosDisponiveis) {
             if (Objects.equals(livro.getTitulo(), titulo) &&
@@ -104,7 +156,11 @@ public class Estoque {
         }
     }
 
-
+    /**
+     * Método que vende um Livro
+     * recebe como @param livro
+     * e @param quantidade
+     */
     public void venderLivro(Livro livro, int quantidade) {
 
         if (livro != null) {
@@ -115,6 +171,14 @@ public class Estoque {
             }
         }
     }
+
+    /**
+     * Método que exclui um Livro
+     * recebe como @param titulo
+     * e @param autor
+     * e @param editora 
+     * e remove do array de livros disponíveis
+     */
     public void excluirLivro(String titulo, String autor, String editora) {
         for (Livro livro : listaLivrosDisponiveis) {
             if (Objects.equals(livro.getTitulo(), titulo) &&
@@ -129,9 +193,5 @@ public class Estoque {
             }
         }
 
-    }
-
-    public boolean pesquisarLivro(Livro livro) {
-        return listaLivrosDisponiveis.contains(livro); //Retorna true se o livro existe, false o contrário
     }
 }
