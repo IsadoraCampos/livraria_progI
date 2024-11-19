@@ -19,7 +19,7 @@ public class Autor {
 
     /**
      * Método que adiciona um livro relacionado com o autor
-     * recebe um @param de um objeto Livro e guarda em um array de Livros
+     * recebe um @param livro e guarda em um array de Livros
      */
     public void adicionarLivroPorAutor(Livro livro) {
         if (!livros.contains(livro)) {
