@@ -65,7 +65,16 @@ public class ClienteManager {
      * e @return um ClienteVIP
      */
     public ClienteVIP converterCliente(Cliente cliente) {
-        return new ClienteVIP(cliente.getNome(), cliente.getCpf(), cliente.getTelefone());
+        return new ClienteVIP(cliente.getNome(), cliente.getCpf(), cliente.getTelefone(), cliente.getNumeroCompras());
+    }
+
+    public void atualizarCliente(Cliente clienteAtualizado) {
+        for (int i = 0; i < listaClientes.size(); i++) {
+            if (listaClientes.get(i).getCpf().equals(clienteAtualizado.getCpf())) {
+                listaClientes.set(i, clienteAtualizado);
+                return;
+            }
+        }
     }
 
     /**
@@ -78,6 +87,7 @@ public class ClienteManager {
                 if (listaClientes.contains(cliente)) {
                     listaClientes.remove(cliente);
                     System.out.println("Cliente removido com sucesso!");
+                    break;
                 } else {
                     System.out.println("Não há um cliente com este CPF cadastrado!");
                 }
@@ -91,15 +101,13 @@ public class ClienteManager {
      * e @param livro
      */
     public void venderLivro(Cliente cliente, Livro livro) {
-        if (cliente instanceof ClienteNormal) {
-            System.out.println("CLIENTE NORMAL");
-            System.out.println("Livro: " + livro.getTitulo() + " - " + livro.getAutor().getNome());
-            System.out.println("Preço: " + cliente.calculaPreco(livro));
-        } else if (cliente instanceof ClienteVIP) {
-            System.out.println("CLIENTE VIP");
-            System.out.println("Livro: " + livro.getTitulo() + " - " + livro.getAutor().getNome());
-            System.out.println("Preço: " + cliente.calculaPreco(livro));
-        }
+        System.out.println("----------------------------------------------");
+        String tipoCliente = cliente instanceof ClienteVIP ? "CLIENTE VIP" : "CLIENTE NORMAL";
+        System.out.println(tipoCliente);
+        System.out.println("Livro: " + livro.getTitulo() + " - " + livro.getAutor().getNome());
+        System.out.println("Preço: " + cliente.calculaPreco(livro));
+        System.out.println("----------------------------------------------");
+        cliente.vendaLivro();
     }
 
 }

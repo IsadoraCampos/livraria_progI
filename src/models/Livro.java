@@ -101,11 +101,11 @@ public class Livro {
      * Método que vende um Livro
      * recebe como @param a quantidade que deseja comprar e diminui a @param qauntidade do Livro
      */
-    public void venderLivro(int quantidade) {
-        if (this.quantidade < quantidade) {
+    public void venderLivro() {
+        if (this.quantidade <= 0) {
             System.out.println("Quantidade insuficiente em estoque!");
         } else {
-            this.quantidade -= quantidade;
+            this.quantidade -= 1;
             System.out.println("Livro(s) vendido(s) com sucesso!");
         }
     }

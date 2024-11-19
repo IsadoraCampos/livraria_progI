@@ -9,8 +9,7 @@ public abstract class Cliente implements ClienteOperacoes {
     private String nome;
     private String cpf;
     private String telefone;
-
-    private final int numeroCompras;
+    private int numeroCompras;
 
     public Cliente(String nome, String cpf, String telefone) {
         this.nome = nome;
@@ -18,6 +17,14 @@ public abstract class Cliente implements ClienteOperacoes {
         this.telefone = telefone;
         this.numeroCompras = 0;
     }
+
+    public Cliente(String nome, String cpf, String telefone, int numeroCompras) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.numeroCompras = numeroCompras;
+    }
+
 
      /**
      * Método @return o nome do Cliente
@@ -45,5 +52,9 @@ public abstract class Cliente implements ClienteOperacoes {
      */
     public int getNumeroCompras() {
         return this.numeroCompras;
+    }
+
+    public void vendaLivro() {
+        this.numeroCompras += 1;
     }
 }
