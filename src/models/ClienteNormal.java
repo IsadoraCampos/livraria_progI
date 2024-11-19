@@ -2,6 +2,9 @@ package src.models;
 
 import src.service.ClienteOperacoes;
 
+/**
+ * Definição da classe ClienteNormal que estende a classe Cliente
+ */
 public class ClienteNormal extends Cliente {
 
 
@@ -9,6 +12,9 @@ public class ClienteNormal extends Cliente {
         super(nome, cpf, telefone);
     }
 
+    /**
+     * Método que mostras as informações do Cliente
+     */
     @Override
     public void printCliente() {
         System.out.println("----------------------------------------------");
@@ -20,6 +26,11 @@ public class ClienteNormal extends Cliente {
         System.out.println("----------------------------------------------");
     }
 
+
+    /**
+     * Método que calculo o preço do Livro para o ClienteNormal
+     * recebe como @param Livro e @return o preço total
+     */
     @Override
     public double calculaPreco(Livro livro) {
         return livro.getPreco();
