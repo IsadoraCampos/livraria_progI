@@ -2,6 +2,9 @@ package src.models;
 
 import src.service.ClienteOperacoes;
 
+/**
+ * Definição da classe ClienteVIP que estende a classe Cliente
+ */
 public class ClienteVIP extends Cliente {
 
     private double desconto;
@@ -10,6 +13,9 @@ public class ClienteVIP extends Cliente {
         this.desconto = 5;
     }
 
+    /**
+     *  Método que mostras as informações do Cliente
+     */
     @Override
     public void printCliente() {
         System.out.println("----------------------------------------------");
@@ -21,6 +27,10 @@ public class ClienteVIP extends Cliente {
         System.out.println("----------------------------------------------");
     }
 
+    /**
+     * Método que calculo o preço do Livro para o ClienteVIP
+     * recebe como @param Livro e @return o desconto 
+     */
     @Override
     public double calculaPreco(Livro livro) {
         return livro.getPreco() * ((100 - desconto) /100);
